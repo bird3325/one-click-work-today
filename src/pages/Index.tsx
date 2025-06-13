@@ -9,7 +9,7 @@ const Index = () => {
   const navigate = useNavigate();
   const nearbyJobs = [{
     id: 1,
-    title: "카페 홀서빙",
+    title: "카페 홀서빙1",
     hourlyPay: 12000,
     location: "강남구 역삼동",
     distance: "0.5km",
