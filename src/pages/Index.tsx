@@ -1,88 +1,93 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Clock, Star, Users, Search, Bell, User, Home, Briefcase, FileText, Filter, Heart, TrendingUp, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
-
 const Index = () => {
   const [activeTab, setActiveTab] = useState("home");
   const navigate = useNavigate();
-
-  const nearbyJobs = [
-    {
-      id: 1,
-      title: "카페 홀서빙",
-      hourlyPay: 12000,
-      location: "강남구 역삼동",
-      distance: "0.5km",
-      startTime: "09:00",
-      endTime: "18:00",
-      rating: 4.8,
-      company: "스타벅스",
-      isLiked: false,
-      urgent: true,
-      category: "서빙"
-    },
-    {
-      id: 2,
-      title: "물류창고 정리",
-      hourlyPay: 15000,
-      location: "송파구 가락동",
-      distance: "1.2km",
-      startTime: "14:00",
-      endTime: "22:00",
-      rating: 4.5,
-      company: "쿠팡물류센터",
-      isLiked: true,
-      urgent: false,
-      category: "물류"
-    },
-    {
-      id: 3,
-      title: "행사장 설치",
-      hourlyPay: 18000,
-      location: "서초구 서초동",
-      distance: "2.1km",
-      startTime: "08:00",
-      endTime: "17:00",
-      rating: 4.9,
-      company: "이벤트코리아",
-      isLiked: false,
-      urgent: true,
-      category: "행사"
-    }
-  ];
-
-  const navigationItems = [
-    { id: "home", label: "홈", icon: Home, path: "/" },
-    { id: "jobs", label: "일자리찾기", icon: Search, path: "/jobs" },
-    { id: "applications", label: "지원내역", icon: FileText, path: "/applications" },
-    { id: "notifications", label: "알림", icon: Bell, path: "/notifications" },
-    { id: "profile", label: "마이페이지", icon: User, path: "/profile" }
-  ];
-
+  const nearbyJobs = [{
+    id: 1,
+    title: "카페 홀서빙",
+    hourlyPay: 12000,
+    location: "강남구 역삼동",
+    distance: "0.5km",
+    startTime: "09:00",
+    endTime: "18:00",
+    rating: 4.8,
+    company: "스타벅스",
+    isLiked: false,
+    urgent: true,
+    category: "서빙"
+  }, {
+    id: 2,
+    title: "물류창고 정리",
+    hourlyPay: 15000,
+    location: "송파구 가락동",
+    distance: "1.2km",
+    startTime: "14:00",
+    endTime: "22:00",
+    rating: 4.5,
+    company: "쿠팡물류센터",
+    isLiked: true,
+    urgent: false,
+    category: "물류"
+  }, {
+    id: 3,
+    title: "행사장 설치",
+    hourlyPay: 18000,
+    location: "서초구 서초동",
+    distance: "2.1km",
+    startTime: "08:00",
+    endTime: "17:00",
+    rating: 4.9,
+    company: "이벤트코리아",
+    isLiked: false,
+    urgent: true,
+    category: "행사"
+  }];
+  const navigationItems = [{
+    id: "home",
+    label: "홈",
+    icon: Home,
+    path: "/"
+  }, {
+    id: "jobs",
+    label: "일자리찾기",
+    icon: Search,
+    path: "/jobs"
+  }, {
+    id: "applications",
+    label: "지원내역",
+    icon: FileText,
+    path: "/applications"
+  }, {
+    id: "notifications",
+    label: "알림",
+    icon: Bell,
+    path: "/notifications"
+  }, {
+    id: "profile",
+    label: "마이페이지",
+    icon: User,
+    path: "/profile"
+  }];
   const handleApply = (jobId: number) => {
     console.log(`Applied to job ${jobId}`);
   };
-
   const handleInstantWork = () => {
     console.log("Instant work clicked");
     navigate("/jobs");
   };
-
   const handlePostJob = () => {
     console.log("Post job clicked");
   };
-
   const handleNavigation = (item: typeof navigationItems[0]) => {
     setActiveTab(item.id);
     navigate(item.path);
   };
-
-  return (
-    <div className="min-h-screen gradient-bg flex flex-col">
+  return <div className="min-h-screen gradient-bg flex flex-col">
       {/* Header */}
       <header className="glass-effect sticky top-0 z-20 px-6 py-4 border-b border-white/20">
         <div className="flex items-center justify-between max-w-md mx-auto">
@@ -90,9 +95,7 @@ const Index = () => {
             <div className="w-10 h-10 gradient-primary rounded-2xl flex items-center justify-center brutal-shadow">
               <span className="text-white font-bold text-lg">오</span>
             </div>
-            <h1 className="text-2xl font-bold gradient-primary bg-clip-text text-transparent">
-              오늘일
-            </h1>
+            <h1 className="text-2xl font-bold gradient-primary bg-clip-text text-transparent">오늘잡</h1>
           </div>
           <div className="flex items-center gap-2 text-gray-600 bg-white/60 rounded-xl px-3 py-2">
             <MapPin className="h-4 w-4 text-blue-600" />
@@ -124,10 +127,7 @@ const Index = () => {
             
             {/* Main CTA Buttons */}
             <div className="grid grid-cols-1 gap-6">
-              <Button 
-                onClick={handleInstantWork}
-                className="h-24 btn-primary relative overflow-hidden group"
-              >
+              <Button onClick={handleInstantWork} className="h-24 btn-primary relative overflow-hidden group">
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
                     <Zap className="h-7 w-7 text-white" />
@@ -140,10 +140,7 @@ const Index = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Button>
               
-              <Button 
-                onClick={handlePostJob}
-                className="h-24 btn-accent relative overflow-hidden group"
-              >
+              <Button onClick={handlePostJob} className="h-24 btn-accent relative overflow-hidden group">
                 <div className="flex items-center gap-4 relative z-10">
                   <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center">
                     <Users className="h-7 w-7 text-white" />
@@ -199,8 +196,9 @@ const Index = () => {
           </div>
 
           <div className="space-y-5">
-            {nearbyJobs.map((job, index) => (
-              <Card key={job.id} className="brutal-shadow hover-lift bg-white border-0 rounded-3xl overflow-hidden animate-fade-in-up" style={{ animationDelay: `${index * 100}ms` }}>
+            {nearbyJobs.map((job, index) => <Card key={job.id} className="brutal-shadow hover-lift bg-white border-0 rounded-3xl overflow-hidden animate-fade-in-up" style={{
+            animationDelay: `${index * 100}ms`
+          }}>
                 <CardContent className="p-0">
                   <div className="p-6 space-y-5">
                     {/* Job Header */}
@@ -208,11 +206,9 @@ const Index = () => {
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
                           <h4 className="font-bold text-gray-900 text-xl">{job.title}</h4>
-                          {job.urgent && (
-                            <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-bold animate-pulse-slow">
+                          {job.urgent && <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-bold animate-pulse-slow">
                               급구
-                            </span>
-                          )}
+                            </span>}
                         </div>
                         <p className="text-sm text-gray-600 font-semibold bg-gray-50 rounded-lg px-3 py-1 inline-block">{job.company}</p>
                       </div>
@@ -248,26 +244,18 @@ const Index = () => {
 
                     {/* Apply Button */}
                     <div className="flex items-center gap-4">
-                      <Button 
-                        onClick={() => handleApply(job.id)}
-                        className="flex-1 btn-accent h-14 text-lg font-bold relative overflow-hidden group"
-                      >
+                      <Button onClick={() => handleApply(job.id)} className="flex-1 btn-accent h-14 text-lg font-bold relative overflow-hidden group">
                         <Zap className="h-5 w-5 mr-2" />
                         1초 지원하기
                         <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </Button>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        className="h-14 w-14 rounded-2xl border-2 border-gray-200 hover:border-red-300 hover:bg-red-50 transition-all duration-200"
-                      >
+                      <Button variant="outline" size="icon" className="h-14 w-14 rounded-2xl border-2 border-gray-200 hover:border-red-300 hover:bg-red-50 transition-all duration-200">
                         <Heart className={cn("h-6 w-6 transition-colors duration-200", job.isLiked ? "fill-red-500 text-red-500" : "text-gray-400 hover:text-red-500")} />
                       </Button>
                     </div>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </section>
 
@@ -279,42 +267,20 @@ const Index = () => {
       <nav className="fixed bottom-0 left-0 right-0 glass-effect border-t border-white/20 z-20">
         <div className="max-w-md mx-auto">
           <div className="grid grid-cols-5 h-20">
-            {navigationItems.map((item) => {
-              const IconComponent = item.icon;
-              const isActive = activeTab === item.id;
-              
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavigation(item)}
-                  className={cn(
-                    "flex flex-col items-center justify-center gap-1 transition-all duration-300 relative group",
-                    isActive 
-                      ? "text-blue-600" 
-                      : "text-gray-500 hover:text-gray-700"
-                  )}
-                >
-                  {isActive && (
-                    <div className="absolute top-2 w-10 h-1 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full animate-scale-in" />
-                  )}
-                  <div className={cn(
-                    "p-2 rounded-2xl transition-all duration-300 group-hover:scale-110",
-                    isActive ? "bg-blue-100 scale-110" : "hover:bg-gray-100"
-                  )}>
+            {navigationItems.map(item => {
+            const IconComponent = item.icon;
+            const isActive = activeTab === item.id;
+            return <button key={item.id} onClick={() => handleNavigation(item)} className={cn("flex flex-col items-center justify-center gap-1 transition-all duration-300 relative group", isActive ? "text-blue-600" : "text-gray-500 hover:text-gray-700")}>
+                  {isActive && <div className="absolute top-2 w-10 h-1 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full animate-scale-in" />}
+                  <div className={cn("p-2 rounded-2xl transition-all duration-300 group-hover:scale-110", isActive ? "bg-blue-100 scale-110" : "hover:bg-gray-100")}>
                     <IconComponent className="h-5 w-5" />
                   </div>
-                  <span className={cn(
-                    "text-xs font-semibold transition-all duration-300",
-                    isActive ? "scale-105" : ""
-                  )}>{item.label}</span>
-                </button>
-              );
-            })}
+                  <span className={cn("text-xs font-semibold transition-all duration-300", isActive ? "scale-105" : "")}>{item.label}</span>
+                </button>;
+          })}
           </div>
         </div>
       </nav>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
