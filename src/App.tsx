@@ -1,34 +1,35 @@
+import React, { useState } from 'react';
+import HomePage from './pages/index';
+import JobsPage from './pages/Jobs';
+import ProfilePage from './pages/Profile';
+import NavigationMenu from './components/ui/navigation-menu';
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import Jobs from "./pages/Jobs";
-import Applications from "./pages/Applications";
-import Profile from "./pages/Profile";
-import NotFound from "./pages/NotFound";
+const App = () => {
+  const [activeTab, setActiveTab] = useState('home');
 
-const queryClient = new QueryClient();
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'home':
+        return <HomePage />;
+      case 'jobs':
+        return <JobsPage />;
+      case 'applications':
+        return <div className="p-4">지원내역 페이지</div>;
+      case 'notifications':
+        return <div className="p-4">알림 페이지</div>;
+      case 'profile':
+        return <ProfilePage />;
+      default:
+        return <HomePage />;
+    }
+  };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/applications" element={<Applications />} />
-          <Route path="/profile" element={<Profile />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {renderContent()}
+      <NavigationMenu activeTab={activeTab} onTabChange={setActiveTab} />
+    </div>
+  );
+};
 
 export default App;
